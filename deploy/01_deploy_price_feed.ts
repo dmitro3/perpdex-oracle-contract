@@ -91,9 +91,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         zksync2_testnet: [
             // use scripts/univ2_survey.ts to get addresses
             {
-                contract: "UniswapV2PriceFeed",
+                contract: "DebugPriceFeed",
                 symbol: "ETHUSD",
-                args: ["0xE9ea01488213269fDE4260B09e60faC36C971AD5", true],
+                args: [parseEther("1500")],
             },
         ],
     }[hre.network.name]
