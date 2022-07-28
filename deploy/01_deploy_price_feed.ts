@@ -96,6 +96,13 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
                 args: [parseEther("1500")],
             },
         ],
+        optimism_kovan: [
+            {
+                contract: "ChainlinkPriceFeed",
+                symbol: "ETHUSD",
+                args: ["0x7f8847242a530E809E17bF2DA5D2f9d2c4A43261"],
+            },
+        ],
     }[hre.network.name]
 
     for (let i = 0; i < configs.length; i++) {
