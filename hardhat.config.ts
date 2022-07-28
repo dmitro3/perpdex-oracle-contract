@@ -96,6 +96,11 @@ if (process.env.TESTNET_PRIVATE_KEY) {
         },
         zksync: true,
     }
+
+    config.networks.optimism_kovan = {
+        url: "https://kovan.optimism.io",
+        accounts: [process.env.TESTNET_PRIVATE_KEY],
+    }
 }
 
 export default config
