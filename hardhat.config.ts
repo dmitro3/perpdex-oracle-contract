@@ -101,6 +101,11 @@ if (process.env.TESTNET_PRIVATE_KEY) {
         url: "https://kovan.optimism.io",
         accounts: [process.env.TESTNET_PRIVATE_KEY],
     }
+
+    config.networks.arbitrum_rinkeby = {
+        url: "https://rinkeby.arbitrum.io/rpc",
+        accounts: [process.env.TESTNET_PRIVATE_KEY],
+    }
 }
 
 export default config

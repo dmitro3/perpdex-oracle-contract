@@ -103,6 +103,13 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
                 args: ["0x7f8847242a530E809E17bF2DA5D2f9d2c4A43261"],
             },
         ],
+        arbitrum_rinkeby: [
+            {
+                contract: "ChainlinkPriceFeed",
+                symbol: "ETHUSD",
+                args: ["0x5f0423B1a6935dc5596e7A24d98532b67A0AeFd8"],
+            },
+        ],
     }[hre.network.name]
 
     for (let i = 0; i < configs.length; i++) {
