@@ -3,10 +3,10 @@ pragma solidity >=0.7.6;
 pragma experimental ABIEncoderV2;
 
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
+import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 import { SafeMath } from "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import { IERC20 } from "@uniswap/v2-core/contracts/interfaces/IERC20.sol";
 import { IUniswapV2Pair } from "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
-import { PRBMath } from "prb-math/contracts/PRBMath.sol";
 import { IPerpdexPriceFeed } from "./interface/IPerpdexPriceFeed.sol";
 
 // TODO: write test
@@ -30,9 +30,9 @@ contract UniswapV2PriceFeed is IPerpdexPriceFeed {
     function getPrice() external view override returns (uint256) {
         (uint256 reserve0, uint256 reserve1, ) = IUniswapV2Pair(pair).getReserves();
         if (inverse) {
-            return PRBMath.mulDiv(reserve1, priceScale, reserve0);
+            return Math.mulDiv(reserve1, priceScale, reserve0);
         } else {
-            return PRBMath.mulDiv(reserve0, priceScale, reserve1);
+            return Math.mulDiv(reserve0, priceScale, reserve1);
         }
     }
 

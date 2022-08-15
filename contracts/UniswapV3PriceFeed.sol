@@ -3,9 +3,9 @@ pragma solidity >=0.7.6;
 pragma experimental ABIEncoderV2;
 
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
+import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
 import { IUniswapV3Pool } from "@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol";
 import { FixedPoint96 } from "@uniswap/v3-core/contracts/libraries/FixedPoint96.sol";
-import { PRBMath } from "prb-math/contracts/PRBMath.sol";
 import { IPerpdexPriceFeed } from "./interface/IPerpdexPriceFeed.sol";
 
 // TODO: support different token decimals like USDC
@@ -47,10 +47,10 @@ contract UniswapV3PriceFeed is IPerpdexPriceFeed {
     }
 
     function _formatSqrtPriceX96ToPriceX96(uint160 sqrtPriceX96) internal pure returns (uint256) {
-        return PRBMath.mulDiv(sqrtPriceX96, sqrtPriceX96, FixedPoint96.Q96);
+        return Math.mulDiv(sqrtPriceX96, sqrtPriceX96, FixedPoint96.Q96);
     }
 
     function _formatX96ToX10_18(uint256 valueX96) internal pure returns (uint256) {
-        return PRBMath.mulDiv(valueX96, 1e18, FixedPoint96.Q96);
+        return Math.mulDiv(valueX96, 1e18, FixedPoint96.Q96);
     }
 }
