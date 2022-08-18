@@ -14,20 +14,13 @@ dotenvConfig({ path: resolve(__dirname, "./.env") })
 
 const config: HardhatUserConfig = {
     solidity: {
-        version: "0.8.12",
+        version: "0.8.16",
         settings: {
             optimizer: { enabled: true, runs: 200 },
-            evmVersion: "berlin",
-            // for smock to mock contracts
-            outputSelection: {
-                "*": {
-                    "*": ["storageLayout"],
-                },
-            },
         },
     },
     zksolc: {
-        version: "0.1.0",
+        version: "1.1.2",
         compilerSource: "docker",
         settings: {
             optimizer: {
@@ -35,6 +28,7 @@ const config: HardhatUserConfig = {
             },
             experimental: {
                 dockerImage: "matterlabs/zksolc",
+                tag: "v1.1.2",
             },
         },
     },
