@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-pragma solidity >=0.7.6;
-pragma experimental ABIEncoderV2;
+pragma solidity >=0.8.0;
 
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
 import { Math } from "@openzeppelin/contracts/utils/math/Math.sol";
@@ -9,7 +8,6 @@ import { IERC20 } from "@uniswap/v2-core/contracts/interfaces/IERC20.sol";
 import { IUniswapV2Pair } from "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
 import { IPerpdexPriceFeed } from "./interface/IPerpdexPriceFeed.sol";
 
-// TODO: write test
 contract UniswapV2PriceFeed is IPerpdexPriceFeed {
     using Address for address;
     using SafeMath for uint256;
@@ -44,9 +42,9 @@ contract UniswapV2PriceFeed is IPerpdexPriceFeed {
 
         uint256 price_scale_decimals;
         if (inverseArg) {
-            price_scale_decimals = decimals1.add(decimals).sub(decimals0);
-        } else {
             price_scale_decimals = decimals0.add(decimals).sub(decimals1);
+        } else {
+            price_scale_decimals = decimals1.add(decimals).sub(decimals0);
         }
         require(price_scale_decimals <= 36, "UV2PF_GPS: too large decimals");
         return 10**price_scale_decimals;
